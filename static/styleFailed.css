@@ -1,0 +1,50 @@
+/* Menambahkan warna background pada elemen body */
+body {
+    background-color: #f0f0f5;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Menambahkan warna dan efek hover pada elemen button */
+  .back-to-login {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .back-to-login:hover {
+    background-color: darkblue;
+  }
+  
+  /* Menambahkan warna dan efek pada elemen form */
+  .form-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px lightgray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Menambahkan warna dan efek pada elemen label */
+  .form-label {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Menambahkan warna dan efek pada elemen input */
+  .form-input {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+  }
+  
