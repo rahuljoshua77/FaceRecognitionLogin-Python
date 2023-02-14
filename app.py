@@ -1,28 +1,14 @@
-import face_recognition, base64,os
-cwd = os.getcwd()
-from requests_html import HTMLSession
-session = HTMLSession()
-from io import BytesIO
-import io
-from multiprocessing import Pool
-
-from flask import Flask, render_template, request, redirect, jsonify
-
-# Inisialisasi aplikasi Flask
+import face_recognition
+import base64
+import os
 import numpy as np
-application = Flask(__name__, static_url_path='/static')
-from PIL import Image
-from time import sleep
-import urllib.request
-from io import BytesIO
-import io
-import face_recognition, base64,os
-cwd = os.getcwd()
-from requests_html import HTMLSession
-session = HTMLSession()
-
-import face_recognition, base64,os
 import pymysql
+import urllib.request
+from requests_html import HTMLSession
+from flask import Flask, render_template, request
+
+application = Flask(__name__, static_url_path='/static')
+session = HTMLSession()
 
 # Connect to the database
 
