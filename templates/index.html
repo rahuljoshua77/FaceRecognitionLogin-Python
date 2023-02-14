@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Face Recognition Login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+  <body onload="capture()" class="bg-primary">
+
+    <div class="container-fluid">
+      <div class="row justify-content-center mt-5">
+        <div class="col-md-6 col-sm-12 text-center">
+          <h1 class="text-white">Welcome to Face Recognition Login</h1>
+          <form action="/login" method="post" enctype="multipart/form-data">
+            <div>
+              <label for="picture" class="text-white">Take a picture:</label>
+              <video id="video" class="rounded border border-light"></video>
+              <br>
+              <button id="capture" class="btn btn-light mt-2">Capture</button>
+            </div>
+            <div id="captured_image"></div>
+            <input type="hidden" id="imgData" name="imgData">
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      // Fungsi untuk mengaktifkan webcam dan menangkap foto
+      function capture() {
+        // Mendapatkan element video
+        var video = document.getElementById('video');
+
+        // Membuat object media stream
+        var stream = new MediaStream();
+
+        // Mendapatkan device webcam
+        navigator.mediaDevices.getUserMedia({video: true}).then(function(mediaStream) {
+            video.srcObject = mediaStream;
+            video.play();
+            // Menangkap gambar dari webcam
+            document.getElementById('capture').addEventListener('click', function() {
+                var canvas = document.createElement('canvas');
+                canvas.width = video.videoWidth;
+                canvas.height = video.videoHeight;
+                canvas.getContext('2d').drawImage(video, 0, 0);
+                var img = document.createElement("img");
+                img.src = canvas.toDataURL("image/png");
+                document.getElementById("captured_image").appendChild(img);
+                img.style.display = "block";
+                var imgData = canvas.toDataURL("image/png");
+                document.getElementById("imgData").value = imgData;
+                // Tampilkan popup untuk menunggu proses data
+                $('#loadingModal').modal('show');
+                // Submit form untuk proses login
+                $('form').submit();
+            });
+        });
+      }
+    </script>
+    <!-- Modal untuk menampilkan popup loading -->
+    <div class="modal fade" id="loadingModal" tabindex="-1" role="dialog" aria-labelledby="loadingModalLabel" aria-hidden="true">
+
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <h5 class="modal-title" id="loadingModalLabel">Please wait while we process your image</h5>
+            <div class="spinner-border text-primary" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
