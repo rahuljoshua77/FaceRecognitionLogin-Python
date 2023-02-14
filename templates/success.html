@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/styleFailed.css')}}">
+    <title>Success Login</title>
+    <!-- tambahkan link CSS Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center">Success login, your student identity is {{ name }}!</h1>
+      <div class="text-center">
+        <p><span id="countdown">5</span> seconds left before redirect to login page</p>
+      </div>
+      <!-- tambahkan tag div dengan kelas "text-center" -->
+      <div class="text-center">
+        <button class="btn btn-primary" onclick="window.location.href='/';">Back to Login Page</button>
+      </div>
+      
+      <script>
+        // mengambil elemen dengan id "countdown"
+        var countdown = document.getElementById("countdown");
+
+        // membuat fungsi yang akan dijalankan setiap detik
+        function updateCountdown() {
+          // mengurangi waktu yang tersisa
+          var timeLeft = countdown.innerHTML;
+          timeLeft--;
+          countdown.innerHTML = timeLeft;
+
+          // jika waktu habis, redirect ke halaman login
+          if (timeLeft <= 0) {
+
+            window.location.href = '/';
+          }
+        }
+
+        // menjalankan fungsi setiap detik
+        setInterval(updateCountdown, 1000);
+      </script>
+    </div>
+    <!-- tambahkan link JavaScript Bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </body>
+</html>
